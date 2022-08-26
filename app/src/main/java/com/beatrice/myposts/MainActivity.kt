@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.beatrice.myposts.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,15 +26,13 @@ class MainActivity : AppCompatActivity() {
                  var posts = response.body()
                  Toast.makeText(baseContext,"fetched ${posts!!.size} posts",Toast.LENGTH_LONG)
                      .show()
-                 var postAdapter=PostsRvAdapter(baseContext,posts)
+                 var postAdapter=PostsRvAdapter(posts)
                  binding.rvPosts.layoutManager= LinearLayoutManager(baseContext)
                  binding.rvPosts.adapter=postAdapter
                  }
              }
 
-
             override fun onFailure(call: Call<List<Post>>, t: Throwable) {
-
             }
         })
     }
